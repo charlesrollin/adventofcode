@@ -10,7 +10,7 @@ class Day1 extends Solver<number[], number> {
   };
 
   protected _solveFirstPart = (input: number[], optionalGoal?: number) => {
-    const goal = optionalGoal || 2020;
+    const goal = optionalGoal ?? 2020;
     const map = {};
     input.forEach(number => map[number] = true);
     for(let i = 0; i < input.length; i++) {
