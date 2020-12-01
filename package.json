@@ -1,0 +1,30 @@
+{
+  "name": "adventofcode2019",
+  "version": "0.0.1",
+  "description": "A node script to process daily electricity consumption",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rimraf dist && tsc && cp -r src/__inputs__ dist/__inputs__",
+    "start": "node dist/index.js",
+    "dev": "nodemon --exec ts-node src/index.ts --watch src",
+    "test": "jest --watch",
+    "coverage": "jest --coverage"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/fs-extra": "^8.0.1",
+    "@types/jest": "^24.0.21",
+    "@types/node": "^12.12.5",
+    "fs-extra": "^8.1.0",
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.4",
+    "rimraf": "^3.0.0",
+    "ts-jest": "^24.1.0",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "chalk": "^3.0.0"
+  }
+}
