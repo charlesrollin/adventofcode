@@ -1,4 +1,4 @@
-import { getInput } from "./parser";
+import { getInput } from './parser';
 
 export abstract class Solver<T, U = string> {
   protected get input() {

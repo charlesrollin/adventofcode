@@ -1,4 +1,4 @@
-import { Solver } from "./Solver";
+import { Solver } from './Solver';
 
 class Day1 extends Solver<number[], number> {
   constructor() {
@@ -12,8 +12,8 @@ class Day1 extends Solver<number[], number> {
   protected _solveFirstPart = (input: number[], optionalGoal?: number) => {
     const goal = optionalGoal ?? 2020;
     const map = {};
-    input.forEach(number => map[number] = true);
-    for(let i = 0; i < input.length; i++) {
+    input.forEach(number => (map[number] = true));
+    for (let i = 0; i < input.length; i++) {
       if (map[goal - input[i]] !== undefined) {
         return input[i] * (goal - input[i]);
       }
@@ -21,7 +21,7 @@ class Day1 extends Solver<number[], number> {
   };
 
   protected _solveSecondPart = (input: number[]) => {
-    for(let i = 0; i < input.length; i++) {
+    for (let i = 0; i < input.length; i++) {
       const subInput = input.slice(i + 1);
       const subResult = this._solveFirstPart(subInput, 2020 - input[i]);
       if (subResult !== undefined) {

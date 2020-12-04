@@ -1,4 +1,4 @@
-import { Solvers } from "./solvers";
+import { Solvers } from './solvers';
 
 const DAY = 3;
 const Solver = Solvers[DAY];
