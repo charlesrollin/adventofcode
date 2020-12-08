@@ -1,24 +1,9 @@
+import { difference, union } from './../shared/sets';
 import { Solver } from './Solver';
 
 interface Input {
   key: string;
   contains: { key: string; amount: number }[];
-}
-
-function union<T>(setA: Set<T>, setB: Set<T>) {
-  let _union = new Set(setA);
-  for (let elem of setB) {
-    _union.add(elem);
-  }
-  return _union;
-}
-
-function difference<T>(setA: Set<T>, setB: Set<T>) {
-  let _difference = new Set(setA);
-  for (let elem of setB) {
-    _difference.delete(elem);
-  }
-  return _difference;
 }
 
 class Day7 extends Solver<any[], number> {
