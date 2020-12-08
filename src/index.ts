@@ -1,6 +1,6 @@
 import { Solvers } from './solvers';
 
-const DAY = 7;
+const DAY = 8;
 const Solver = Solvers[DAY];
 
 console.log(Solver.solveFirstPart());
