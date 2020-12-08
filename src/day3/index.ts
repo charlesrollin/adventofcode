@@ -1,8 +1,8 @@
-import { Solver } from './Solver';
+import { Solver } from '../solvers/Solver';
 
-class Day3 extends Solver<number[][], number> {
+class DaySolver extends Solver<number[][], number> {
   constructor() {
-    super(3);
+    super(__dirname);
   }
 
   protected parseInput = (input: string) => {
@@ -34,4 +34,4 @@ class Day3 extends Solver<number[][], number> {
   };
 }
 
-export const day3 = new Day3();
+export const solver = new DaySolver();

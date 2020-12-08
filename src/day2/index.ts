@@ -1,4 +1,4 @@
-import { Solver } from './Solver';
+import { Solver } from './../solvers/Solver';
 
 interface Input {
   rule: {
@@ -9,9 +9,9 @@ interface Input {
   password: string;
 }
 
-class Day2 extends Solver<Input[], number> {
+class DaySolver extends Solver<Input[], number> {
   constructor() {
-    super(2);
+    super(__dirname);
   }
 
   private isValidPasswordForFirstPart = (item: Input) => {
@@ -51,4 +51,4 @@ class Day2 extends Solver<Input[], number> {
   };
 }
 
-export const day2 = new Day2();
+export const solver = new DaySolver();

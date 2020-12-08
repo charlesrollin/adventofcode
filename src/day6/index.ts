@@ -1,14 +1,9 @@
 import { intersection } from './../shared/sets';
-import { Solver } from './Solver';
+import { Solver } from './../solvers/Solver';
 
-interface Input {
-  row: number;
-  column: number;
-}
-
-class Day6 extends Solver<string[][], number> {
+class DaySolver extends Solver<string[][], number> {
   constructor() {
-    super(6);
+    super(__dirname);
   }
 
   protected parseInput = (input: string) => {
@@ -31,4 +26,4 @@ class Day6 extends Solver<string[][], number> {
   };
 }
 
-export const day6 = new Day6();
+export const solver = new DaySolver();

@@ -2,10 +2,10 @@ import { getInput } from './parser';
 
 export abstract class Solver<T, U = string> {
   protected get input() {
-    return getInput(this.day);
+    return getInput(this.dirName);
   }
 
-  constructor(public day: number) {}
+  constructor(public dirName: string) {}
 
   protected abstract parseInput(input: string): T;
 

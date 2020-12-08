@@ -1,4 +1,4 @@
-import { Solver } from './Solver';
+import { Solver } from './../solvers/Solver';
 
 interface Input {
   op: Operation;
@@ -48,9 +48,9 @@ class Computer {
   }
 }
 
-class Day8 extends Solver<Input[], number> {
+class DaySolver extends Solver<Input[], number> {
   constructor() {
-    super(8);
+    super(__dirname);
   }
 
   protected parseInput = (input: string) => {
@@ -90,4 +90,4 @@ class Day8 extends Solver<Input[], number> {
   };
 }
 
-export const day8 = new Day8();
+export const solver = new DaySolver();

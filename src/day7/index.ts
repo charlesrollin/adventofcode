@@ -1,14 +1,14 @@
 import { difference, union } from './../shared/sets';
-import { Solver } from './Solver';
+import { Solver } from './../solvers/Solver';
 
 interface Input {
   key: string;
   contains: { key: string; amount: number }[];
 }
 
-class Day7 extends Solver<any[], number> {
+class DaySolver extends Solver<any[], number> {
   constructor() {
-    super(7);
+    super(__dirname);
   }
 
   protected parseInput = (input: string) => {
@@ -78,4 +78,4 @@ class Day7 extends Solver<any[], number> {
   };
 }
 
-export const day7 = new Day7();
+export const solver = new DaySolver();

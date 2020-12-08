@@ -1,13 +1,13 @@
-import { Solver } from './Solver';
+import { Solver } from './../solvers/Solver';
 
 interface Input {
   row: number;
   column: number;
 }
 
-class Day5 extends Solver<Input[], number> {
+class DaySolver extends Solver<Input[], number> {
   constructor() {
-    super(5);
+    super(__dirname);
   }
 
   protected parseInput = (input: string) => {
@@ -52,4 +52,4 @@ class Day5 extends Solver<Input[], number> {
   };
 }
 
-export const day5 = new Day5();
+export const solver = new DaySolver();

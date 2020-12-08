@@ -1,7 +1,9 @@
-import { Solvers } from './solvers';
+async function solve() {
+  const DAY = 8;
+  const { solver } = await import(`./day${DAY}`);
 
-const DAY = 6;
-const Solver = Solvers[DAY];
+  console.log(solver.solveFirstPart());
+  console.log(solver.solveSecondPart());
+}
 
-console.log(Solver.solveFirstPart());
-console.log(Solver.solveSecondPart());
+solve();

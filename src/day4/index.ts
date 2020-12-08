@@ -1,4 +1,4 @@
-import { Solver } from './Solver';
+import { Solver } from './../solvers/Solver';
 
 enum PassportKeys {
   byr = 'byr',
@@ -15,9 +15,9 @@ type Input = {
   [key in PassportKeys]: string;
 };
 
-class Day4 extends Solver<Input[], number> {
+class DaySolver extends Solver<Input[], number> {
   constructor() {
-    super(4);
+    super(__dirname);
   }
 
   private parsePassport = (raw: string): Input => {
@@ -78,4 +78,4 @@ class Day4 extends Solver<Input[], number> {
   };
 }
 
-export const day4 = new Day4();
+export const solver = new DaySolver();
