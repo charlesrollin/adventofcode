@@ -1,6 +1,6 @@
 import { Solver } from '../solvers/Solver';
 
-export interface TestCase<T> {
+export interface TestCase<T = never> {
   input: string;
   extraParams?: T;
   expected: { part1: number | string; part2: number | string };
