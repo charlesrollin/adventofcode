@@ -1,5 +1,5 @@
 async function solve() {
-  const DAY = 11;
+  const DAY = 12;
   const { solver } = await import(`./day${DAY}`);
 
   console.log(solver.solveFirstPart());
