@@ -12,7 +12,7 @@ async function solve() {
       .map(match => parseInt(match[1], 10));
     DAY = Math.max(...days);
   }
-  const { solver } = await import(`./day${DAY}`);
+  const { solver } = await import(`./2020/day${DAY}`);
 
   console.log(solver.solveFirstPart());
   console.log(solver.solveSecondPart());
