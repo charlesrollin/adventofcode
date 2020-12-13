@@ -3,6 +3,7 @@ import { solver } from '.';
 
 const testCases: TestCase[] = [
   {
+    title: '2 consecutive numbers',
     input: `939
       10,11`.replace(/  /g, ''),
     expected: {
@@ -10,6 +11,7 @@ const testCases: TestCase[] = [
     },
   },
   {
+    title: '2 consecutive numbers with a blank',
     input: `939
       10,x,11`.replace(/  /g, ''),
     expected: {
@@ -17,6 +19,7 @@ const testCases: TestCase[] = [
     },
   },
   {
+    title: '2 consecutive primes with the correct offset',
     input: `939
       11,x,13`.replace(/  /g, ''),
     expected: {
@@ -24,6 +27,7 @@ const testCases: TestCase[] = [
     },
   },
   {
+    title: '2 consecutive numbers and the next prime with the correct offset',
     input: `939
       10,11,x,13`.replace(/  /g, ''),
     expected: {
