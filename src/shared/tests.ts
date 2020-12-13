@@ -3,7 +3,7 @@ import { Solver } from '../solvers/Solver';
 export interface TestCase<T = never> {
   input: string;
   extraParams?: T;
-  expected: { part1?: number | string; part2?: number | string };
+  expected: { part1?: number | string | bigint; part2?: number | string | bigint };
 }
 
 export const runCases = <T, U, V>(solver: Solver<T, U>, testCases: TestCase<V>[]) => {
