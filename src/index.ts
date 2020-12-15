@@ -6,7 +6,7 @@ async function solve() {
   let DAY = parseInt(args[0], 10);
   if (isNaN(DAY)) {
     const days = fs
-      .readdirSync(`${__dirname}`)
+      .readdirSync(`${__dirname}/2020`)
       .map(name => name.match(/^day(\d*)$/))
       .filter(match => match !== null)
       .map(match => parseInt(match[1], 10));
