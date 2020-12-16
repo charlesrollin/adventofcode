@@ -10,7 +10,7 @@ export interface TestCase<T = never> {
 export const runCases = <T, U, V>(solver: Solver<T, U>, testCases: TestCase<V>[]) => {
   describe('Part 1', () => {
     testCases.forEach((testCase, idx) => {
-      if (testCase.expected.part1) {
+      if (testCase.expected.part1 !== undefined) {
         it(`should pass ${testCase.title ? `${testCase.title}` : `#${idx + 1}`}`, () => {
           expect(solver.solveFirstPart(testCase.input, testCase.extraParams)).toEqual(
             testCase.expected.part1
@@ -21,7 +21,7 @@ export const runCases = <T, U, V>(solver: Solver<T, U>, testCases: TestCase<V>[]
   });
   describe('Part 2', () => {
     testCases.forEach((testCase, idx) => {
-      if (testCase.expected.part2) {
+      if (testCase.expected.part2 !== undefined) {
         it(`should pass ${testCase.title ? `${testCase.title}` : `#${idx + 1}`}`, () => {
           expect(solver.solveSecondPart(testCase.input, testCase.extraParams)).toEqual(
             testCase.expected.part2

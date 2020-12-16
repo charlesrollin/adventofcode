@@ -16,8 +16,7 @@ const testCases: TestCase[] = [
     55,2,20
     38,6,12`.replace(/  /g, ''),
     expected: {
-      // part1: 71,
-      part2: 12,
+      part1: 71,
     },
   },
 ];
