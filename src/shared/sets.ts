@@ -14,8 +14,8 @@ export function difference<T>(setA: Set<T>, setB: Set<T>) {
   return _difference;
 }
 
-export function intersection(setA, setB) {
-  let _intersection = new Set();
+export function intersection<T>(setA: Set<T>, setB: Set<T>) {
+  let _intersection = new Set<T>();
   for (let elem of setB) {
     if (setA.has(elem)) {
       _intersection.add(elem);
