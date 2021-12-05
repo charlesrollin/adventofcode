@@ -1,7 +1,7 @@
 {
-  "name": "adventofcode2019",
-  "version": "0.0.1",
-  "description": "A node script to process daily electricity consumption",
+  "name": "adventofcode",
+  "version": "1.0.0",
+  "description": "Solutions to adventofcode problems",
   "main": "dist/index.js",
   "scripts": {
     "build": "rimraf dist && cp -r src dist && tsc",
