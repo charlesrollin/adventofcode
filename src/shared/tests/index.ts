@@ -7,7 +7,7 @@ export interface TestCase<T = never> {
   expected: { part1?: number | string | bigint; part2?: number | string | bigint };
 }
 
-export const runCases = <T, U, V>(solver: Solver<T, U>, testCases: TestCase<V>[]) => {
+export const runCases = <T, U, V>(solver: Solver<T, U, V>, testCases: TestCase<V>[]) => {
   describe('Part 1', () => {
     testCases.forEach((testCase, idx) => {
       if (testCase.expected.part1 !== undefined) {
