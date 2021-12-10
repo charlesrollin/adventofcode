@@ -1,3 +1,4 @@
+import { median } from '../../shared/math';
 import { Solver } from '../../shared/Solver';
 
 const closingChars = {
@@ -32,15 +33,6 @@ class DaySolver extends Solver<string[][], number> {
 
   private isOpeningChar(char: string) {
     return ['(', '{', '[', '<'].includes(char);
-  }
-
-  private median(input: number[]) {
-    const sorted = [...input].sort((a, b) => a - b);
-    const middleIdx = Math.floor(sorted.length / 2);
-    if (sorted.length % 2 === 0) {
-      return sorted[middleIdx - 1];
-    }
-    return sorted[middleIdx];
   }
 
   private getLineStatus(line: string[]) {
@@ -81,7 +73,7 @@ class DaySolver extends Solver<string[][], number> {
     const pendingLines = input
       .map(line => this.getLineStatus(line))
       .filter(({ invalidChar }) => invalidChar === undefined);
-    return this.median(pendingLines.map(({ pendingStack }) => this.finishLine(pendingStack)));
+    return median(pendingLines.map(({ pendingStack }) => this.finishLine(pendingStack)));
   };
 }
 

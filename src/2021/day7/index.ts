@@ -1,3 +1,4 @@
+import { median } from '../../shared/math';
 import { Solver } from '../../shared/Solver';
 
 class DaySolver extends Solver<number[], number> {
@@ -9,18 +10,9 @@ class DaySolver extends Solver<number[], number> {
     return input.split(',').map(item => parseInt(item));
   };
 
-  private median(input: number[]) {
-    const sorted = [...input].sort((a, b) => a - b);
-    const middleIdx = Math.floor(sorted.length / 2);
-    if (sorted.length % 2 === 0) {
-      return sorted[middleIdx - 1];
-    }
-    return sorted[middleIdx];
-  }
-
   protected _solveFirstPart = (input: number[]) => {
-    const median = this.median(input);
-    return input.reduce((acc, curr) => acc + Math.abs(curr - median), 0);
+    const inputMedian = median(input);
+    return input.reduce((acc, curr) => acc + Math.abs(curr - inputMedian), 0);
   };
 
   protected _solveSecondPart = (input: number[]) => {
