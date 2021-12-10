@@ -1,4 +1,4 @@
-import { Solver } from '../../shared/Solver';
+import { Solver } from 'src/shared/Solver';
 
 interface Input {
   rules: Map<number, { value?: string; subRules?: number[][] }>;

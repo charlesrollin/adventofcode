@@ -1,5 +1,5 @@
-import { difference } from '../../shared/sets';
-import { Solver } from '../../shared/Solver';
+import { difference } from 'src/shared/sets';
+import { Solver } from 'src/shared/Solver';
 
 interface Input {
   rules: { name: string; ranges: { min: number; max: number }[] }[];

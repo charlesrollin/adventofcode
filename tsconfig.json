@@ -9,10 +9,7 @@
     "downlevelIteration": true,
     "baseUrl": ".",
     "paths": {
-      "*": ["node_modules/"],
-      "typings/*": ["./src/typings/*"],
-      "Inputs/*": ["./src/__inputs__/*"],
-      "Solvers/*": ["./src/solvers/*"]
+      "src/*": ["./src/*"]
     }
   },
   "include": ["src/**/*.ts"],

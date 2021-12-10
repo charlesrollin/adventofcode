@@ -1,5 +1,5 @@
-import { difference, intersection, union } from '../../shared/sets';
-import { Solver } from '../../shared/Solver';
+import { difference, intersection, union } from 'src/shared/sets';
+import { Solver } from 'src/shared/Solver';
 
 interface Input {
   ingredients: string[];

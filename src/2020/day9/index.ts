@@ -1,4 +1,4 @@
-import { Solver } from './../../shared/Solver';
+import { Solver } from 'src/shared/Solver';
 
 class DaySolver extends Solver<number[], number> {
   constructor() {
@@ -17,7 +17,7 @@ class DaySolver extends Solver<number[], number> {
       input.slice(i - preambleSize, i).forEach(number => (map[number] = true));
       if (
         !Object.keys(map).some(key => {
-          return map[input[i] - ((key as unknown) as number)] !== undefined;
+          return map[input[i] - (key as unknown as number)] !== undefined;
         })
       ) {
         return input[i];

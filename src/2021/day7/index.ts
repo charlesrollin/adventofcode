@@ -1,5 +1,5 @@
-import { median } from '../../shared/math';
-import { Solver } from '../../shared/Solver';
+import { median } from 'src/shared/math';
+import { Solver } from 'src/shared/Solver';
 
 class DaySolver extends Solver<number[], number> {
   constructor() {

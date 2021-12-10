@@ -1,4 +1,4 @@
-import { Solver } from './../../shared/Solver';
+import { Solver } from 'src/shared/Solver';
 import { Action, ACTION, Ship } from './Ship';
 
 class DaySolver extends Solver<Action[], number> {

@@ -1,4 +1,4 @@
-import { Solver } from './../../shared/Solver';
+import { Solver } from 'src/shared/Solver';
 import { BingoBoard } from './BingoBoard';
 
 class DaySolver extends Solver<{ numbers: number[]; grids: BingoBoard[] }, number> {

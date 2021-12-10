@@ -1,4 +1,4 @@
-import { Solver } from '../../shared/Solver';
+import { Solver } from 'src/shared/Solver';
 import { CoverageMatrix, Line } from './CoverageMatrix';
 
 class DaySolver extends Solver<Line[], number> {

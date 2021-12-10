@@ -1,4 +1,4 @@
-import { Solver } from './../../shared/Solver';
+import { Solver } from 'src/shared/Solver';
 
 export interface TestCase<T = never> {
   title?: string;

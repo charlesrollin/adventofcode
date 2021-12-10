@@ -1,4 +1,4 @@
-import { runCases, TestCase } from '../../shared/tests';
+import { runCases, TestCase } from 'src/shared/tests';
 import { solver } from '.';
 
 const testCases: TestCase[] = [

@@ -1,4 +1,4 @@
-import { Solver } from './../../shared/Solver';
+import { Solver } from 'src/shared/Solver';
 
 class DaySolver extends Solver<number[], number> {
   private map = new Map<string, number>();

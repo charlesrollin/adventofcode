@@ -1,5 +1,5 @@
-import { intersection } from './../../shared/sets';
-import { Solver } from './../../shared/Solver';
+import { intersection } from 'src/shared/sets';
+import { Solver } from 'src/shared/Solver';
 
 class DaySolver extends Solver<string[][], number> {
   constructor() {

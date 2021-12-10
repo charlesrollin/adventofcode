@@ -1,4 +1,4 @@
-import { Solver } from '../../shared/Solver';
+import { Solver } from 'src/shared/Solver';
 
 enum OPERATION {
   MASK = 'mask',
