@@ -1,3 +1,4 @@
+import { getNeighboursCoords } from 'src/shared/matrix';
 import { Solver } from 'src/shared/Solver';
 
 interface InputLine {
@@ -27,25 +28,8 @@ class DaySolver extends Solver<number[][], number> {
     return input.split(/\r?\n/).map(line => line.split('').map(item => parseInt(item, 10)));
   };
 
-  private getNeighboursCoords(input: number[][], [i, j]: [number, number]): [number, number][] {
-    const neighbours: [number, number][] = [];
-    if (i !== 0) {
-      neighbours.push([i - 1, j]);
-    }
-    if (j !== 0) {
-      neighbours.push([i, j - 1]);
-    }
-    if (i !== input.length - 1) {
-      neighbours.push([i + 1, j]);
-    }
-    if (j !== input[0].length - 1) {
-      neighbours.push([i, j + 1]);
-    }
-    return neighbours;
-  }
-
   private getNeighbours(input: number[][], point: [number, number]) {
-    return this.getNeighboursCoords(input, point).map(([i, j]) => input[i][j]);
+    return getNeighboursCoords(input, point).map(([i, j]) => input[i][j]);
   }
 
   private getLowPoints(input: number[][]) {
@@ -68,7 +52,7 @@ class DaySolver extends Solver<number[][], number> {
     while (pointsQueue.length > 0) {
       let nextPoints = [];
       pointsQueue.forEach(point => {
-        const neighbours = this.getNeighboursCoords(input, point);
+        const neighbours = getNeighboursCoords(input, point);
         neighbours.forEach(neighbour => {
           const neighbourValue = input[neighbour[0]][neighbour[1]];
           if (input[point[0]][point[1]] < neighbourValue && neighbourValue !== 9) {

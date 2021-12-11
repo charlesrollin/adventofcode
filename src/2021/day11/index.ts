@@ -1,3 +1,4 @@
+import { getNeighboursCoords } from 'src/shared/matrix';
 import { Solver } from 'src/shared/Solver';
 
 class DaySolver extends Solver<number[][], number> {
@@ -12,35 +13,6 @@ class DaySolver extends Solver<number[][], number> {
       })
     );
   };
-
-  private getNeighboursCoords(input: number[][], [i, j]: [number, number]): [number, number][] {
-    const neighbours: [number, number][] = [];
-    if (i !== 0) {
-      neighbours.push([i - 1, j]);
-      if (j !== 0) {
-        neighbours.push([i - 1, j - 1]);
-      }
-    }
-    if (j !== 0) {
-      neighbours.push([i, j - 1]);
-      if (i !== input.length - 1) {
-        neighbours.push([i + 1, j - 1]);
-      }
-    }
-    if (i !== input.length - 1) {
-      neighbours.push([i + 1, j]);
-      if (j !== input[0].length - 1) {
-        neighbours.push([i + 1, j + 1]);
-      }
-    }
-    if (j !== input[0].length - 1) {
-      neighbours.push([i, j + 1]);
-      if (i !== 0) {
-        neighbours.push([i - 1, j + 1]);
-      }
-    }
-    return neighbours;
-  }
 
   private processInitialStep(input: number[][]) {
     const flashingOctopuses: [number, number][] = [];
@@ -71,7 +43,7 @@ class DaySolver extends Solver<number[][], number> {
     while (flashingOctopuses.length > 0) {
       count += 1;
       const currentOctopus = flashingOctopuses.pop();
-      const neighbours = this.getNeighboursCoords(input, currentOctopus);
+      const neighbours = getNeighboursCoords(input, currentOctopus, { includeDiags: true });
       neighbours.forEach(neighbour => {
         input[neighbour[0]][neighbour[1]] += 1;
         if (input[neighbour[0]][neighbour[1]] === 10) {
