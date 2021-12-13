@@ -1,4 +1,3 @@
-import { getNeighboursCoords } from 'src/shared/matrix';
 import { Solver } from 'src/shared/Solver';
 
 class Instructions {
