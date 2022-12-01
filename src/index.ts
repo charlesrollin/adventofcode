@@ -7,7 +7,7 @@ async function solve() {
   let DAY: number;
   if (args.length > 1) {
     YEAR = parseInt(args[0], 10);
-    DAY = parseInt(args[1], 10)
+    DAY = parseInt(args[1], 10);
   } else {
     DAY = parseInt(args[0], 10);
   }
@@ -17,7 +17,7 @@ async function solve() {
       .map(name => name.match(/^(\d*)$/))
       .filter(match => match !== null)
       .map(match => parseInt(match[1], 10));
-      YEAR = Math.max(...years);
+    YEAR = Math.max(...years);
   }
   if (isNaN(DAY)) {
     const days = fs
@@ -28,7 +28,6 @@ async function solve() {
     DAY = Math.max(...days);
   }
   const { solver } = await import(`./${YEAR}/day${DAY}`);
-
   console.log(solver.solveFirstPart());
   console.log(solver.solveSecondPart());
 }
