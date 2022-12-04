@@ -9,7 +9,7 @@ async function solve() {
     YEAR = parseInt(args[0], 10);
     DAY = parseInt(args[1], 10);
   } else {
-    DAY = parseInt(args[0], 10);
+    YEAR = parseInt(args[0], 10);
   }
   if (isNaN(YEAR)) {
     const years = fs
