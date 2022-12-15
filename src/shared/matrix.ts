@@ -1,10 +1,12 @@
+import { Coords } from './types';
+
 export function getNeighboursCoords(
   input: number[][],
-  [i, j]: [number, number],
+  [i, j]: Coords,
   options?: { includeDiags: boolean }
-): [number, number][] {
+): Coords[] {
   const { includeDiags } = { includeDiags: false, ...options };
-  const neighbours: [number, number][] = [];
+  const neighbours: Coords[] = [];
   if (i !== 0) {
     neighbours.push([i - 1, j]);
     if (includeDiags && j !== 0) {

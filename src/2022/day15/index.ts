@@ -1,6 +1,6 @@
+import { manhattanDistance } from 'src/shared/math';
 import { Solver } from 'src/shared/Solver';
-
-type Coords = [number, number];
+import { Coords } from 'src/shared/types';
 
 class DaySolver extends Solver<{ sensors: Coords[]; beacons: Coords[] }, number, number> {
   constructor() {
@@ -47,15 +47,12 @@ class DaySolver extends Solver<{ sensors: Coords[]; beacons: Coords[] }, number,
     }
   };
 
-  private manhattanDistance = ([x1, y1]: Coords, [x2, y2]: Coords) =>
-    Math.abs(x2 - x1) + Math.abs(y2 - y1);
-
   private computeIntervalsForLine = (sensors: Coords[], beacons: Coords[], line: number) => {
     const intervals: Coords[] = [];
     for (let idx = 0; idx < sensors.length; idx++) {
       const sensor = sensors[idx];
       const beacon = beacons[idx];
-      const distance = this.manhattanDistance(sensor, beacon);
+      const distance = manhattanDistance(sensor, beacon);
       const distanceFromLine = Math.abs(sensor[1] - line);
       if (distanceFromLine < distance) {
         const diff = distance - distanceFromLine;

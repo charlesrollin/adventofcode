@@ -1,4 +1,5 @@
 import { Solver } from 'src/shared/Solver';
+import { Coords } from 'src/shared/types';
 
 enum Direction {
   TOP,
@@ -45,11 +46,7 @@ class DaySolver extends Solver<number[][], number> {
     return maxScenicScore;
   };
 
-  private getTreePosition = (
-    gridLength: number,
-    [i, j]: [number, number],
-    direction: Direction
-  ) => {
+  private getTreePosition = (gridLength: number, [i, j]: Coords, direction: Direction) => {
     switch (direction) {
       case Direction.LEFT:
         return [i, j];
@@ -78,7 +75,7 @@ class DaySolver extends Solver<number[][], number> {
     return boolGrid;
   };
 
-  private computeScenicScore = (input: number[][], position: [number, number]) => {
+  private computeScenicScore = (input: number[][], position: Coords) => {
     let topVisibleTrees = 0;
     let offset = -1;
     while (

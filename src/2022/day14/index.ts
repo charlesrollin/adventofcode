@@ -1,11 +1,12 @@
 import { Solver } from 'src/shared/Solver';
+import { Coords } from 'src/shared/types';
 
 enum Content {
   ROCK = '#',
   SAND = '+',
 }
 
-class DaySolver extends Solver<[number, number][][], number> {
+class DaySolver extends Solver<Coords[][], number> {
   constructor() {
     super(__dirname);
   }
@@ -16,24 +17,24 @@ class DaySolver extends Solver<[number, number][][], number> {
       .map(segments =>
         segments
           .split(' -> ')
-          .map(segment => segment.split(',').map(coord => parseInt(coord)) as [number, number])
+          .map(segment => segment.split(',').map(coord => parseInt(coord)) as Coords)
       );
     return lines;
   };
 
-  protected _solveFirstPart = (input: [number, number][][]) => {
+  protected _solveFirstPart = (input: Coords[][]) => {
     const { caveMap, maxLeft, maxRight } = this.buildCaveMap(input);
     while (this.dropSand(caveMap, maxLeft, maxRight)) {}
     return [...caveMap.values()].filter(value => value === Content.SAND).length;
   };
 
-  protected _solveSecondPart = (input: [number, number][][]) => {
+  protected _solveSecondPart = (input: Coords[][]) => {
     const { caveMap, maxBottom } = this.buildCaveMap(input);
     while (this.dropSand(caveMap, -Infinity, Infinity, maxBottom + 2)) {}
     return [...caveMap.values()].filter(value => value === Content.SAND).length;
   };
 
-  private buildCaveMap = (input: [number, number][][]) => {
+  private buildCaveMap = (input: Coords[][]) => {
     const caveMap = new Map<string, Content>();
     let maxLeft = Infinity;
     let maxRight = -Infinity;
@@ -70,7 +71,7 @@ class DaySolver extends Solver<[number, number][][], number> {
     maxRight: number,
     floorLevel?: number
   ) => {
-    let currentCoords = [500, 0] as [number, number];
+    let currentCoords = [500, 0] as Coords;
     if (this.getMapCellContent(caveMap, currentCoords)) {
       return false;
     }
@@ -88,35 +89,32 @@ class DaySolver extends Solver<[number, number][][], number> {
 
   private nextSandMove = (
     caveMap: Map<string, Content>,
-    currentCoords: [number, number],
+    currentCoords: Coords,
     floorLevel?: number
   ) => {
     if (floorLevel && currentCoords[1] === floorLevel - 1) {
       return currentCoords;
     }
-    const below = [currentCoords[0], currentCoords[1] + 1] as [number, number];
+    const below = [currentCoords[0], currentCoords[1] + 1] as Coords;
     if (!this.getMapCellContent(caveMap, below)) {
       return below;
     }
-    const belowLeft = [currentCoords[0] - 1, currentCoords[1] + 1] as [number, number];
+    const belowLeft = [currentCoords[0] - 1, currentCoords[1] + 1] as Coords;
     if (!this.getMapCellContent(caveMap, belowLeft)) {
       return belowLeft;
     }
-    const belowRight = [currentCoords[0] + 1, currentCoords[1] + 1] as [number, number];
+    const belowRight = [currentCoords[0] + 1, currentCoords[1] + 1] as Coords;
     if (!this.getMapCellContent(caveMap, belowRight)) {
       return belowRight;
     }
     return currentCoords;
   };
 
-  private getMapCellContent = (caveMap: Map<string, Content>, coords: [number, number]) =>
+  private getMapCellContent = (caveMap: Map<string, Content>, coords: Coords) =>
     caveMap.get(coords.join('|'));
 
-  private setMapCellContent = (
-    caveMap: Map<string, Content>,
-    coords: [number, number],
-    value: Content
-  ) => caveMap.set(coords.join('|'), value);
+  private setMapCellContent = (caveMap: Map<string, Content>, coords: Coords, value: Content) =>
+    caveMap.set(coords.join('|'), value);
 }
 
 export const solver = new DaySolver();

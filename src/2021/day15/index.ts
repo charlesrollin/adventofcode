@@ -1,5 +1,6 @@
 import { getNeighboursCoords } from 'src/shared/matrix';
 import { Solver } from 'src/shared/Solver';
+import { Coords } from 'src/shared/types';
 
 class DaySolver extends Solver<number[][], number> {
   constructor() {
@@ -12,10 +13,10 @@ class DaySolver extends Solver<number[][], number> {
 
   private computeRisks(input: number[][]) {
     const risksMap = new Map<string, number>();
-    let currentPositions: [number, number][] = [[0, 0]];
+    let currentPositions: Coords[] = [[0, 0]];
     risksMap.set('0,0', 0);
     while (currentPositions.length > 0) {
-      const nextPositions: [number, number][] = [];
+      const nextPositions: Coords[] = [];
       currentPositions.forEach(position => {
         getNeighboursCoords(input, position).forEach(neighbour => {
           const nextRisk =

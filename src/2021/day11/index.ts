@@ -1,5 +1,6 @@
 import { getNeighboursCoords } from 'src/shared/matrix';
 import { Solver } from 'src/shared/Solver';
+import { Coords } from 'src/shared/types';
 
 class DaySolver extends Solver<number[][], number> {
   constructor() {
@@ -15,7 +16,7 @@ class DaySolver extends Solver<number[][], number> {
   };
 
   private processInitialStep(input: number[][]) {
-    const flashingOctopuses: [number, number][] = [];
+    const flashingOctopuses: Coords[] = [];
     for (let i = 0; i < input.length; i++) {
       for (let j = 0; j < input[0].length; j++) {
         input[i][j] += 1;

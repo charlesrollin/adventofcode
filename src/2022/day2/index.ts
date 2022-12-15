@@ -1,4 +1,5 @@
 import { Solver } from 'src/shared/Solver';
+import { Coords } from 'src/shared/types';
 
 enum OpponentChoice {
   Rock = 'A',
@@ -41,7 +42,7 @@ class DaySolver extends Solver<[OpponentChoice, OwnChoice][], number> {
 
   protected _solveFirstPart = (input: [OpponentChoice, OwnChoice][]) => {
     return input
-      .map(choices => [shapeScores[choices[0]], shapeScores[choices[1]]] as [number, number])
+      .map(choices => [shapeScores[choices[0]], shapeScores[choices[1]]] as Coords)
       .reduce((acc, curr) => acc + this.computeRoundScore(curr), 0);
   };
 
@@ -55,12 +56,12 @@ class DaySolver extends Solver<[OpponentChoice, OwnChoice][], number> {
               number,
               number
             ]),
-          ] as [number, number]
+          ] as Coords
       )
       .reduce((acc, curr) => acc + this.computeRoundScore(curr), 0);
   };
 
-  private computeRoundScore = (choices: [number, number]) => {
+  private computeRoundScore = (choices: Coords) => {
     let score = choices[1];
     if (choices[0] === choices[1]) {
       return score + 3;
@@ -74,7 +75,7 @@ class DaySolver extends Solver<[OpponentChoice, OwnChoice][], number> {
     }
   };
 
-  private guessShapeToPlay = ([opponentChoice, outcome]: [number, number]) => {
+  private guessShapeToPlay = ([opponentChoice, outcome]: Coords) => {
     if (outcome === 3) {
       return opponentChoice;
     }

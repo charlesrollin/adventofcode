@@ -1,23 +1,6 @@
 import { getNeighboursCoords } from 'src/shared/matrix';
 import { Solver } from 'src/shared/Solver';
-
-interface InputLine {
-  patterns: string[];
-  output: string[];
-}
-
-const digits = [
-  'abcefg',
-  'cf',
-  'acdeg',
-  'acdfg',
-  'bcdf',
-  'abdfg',
-  'abdefg',
-  'acf',
-  'abcdefg',
-  'abcdfg',
-];
+import { Coords } from 'src/shared/types';
 
 class DaySolver extends Solver<number[][], number> {
   constructor() {
@@ -28,12 +11,12 @@ class DaySolver extends Solver<number[][], number> {
     return input.split(/\r?\n/).map(line => line.split('').map(item => parseInt(item, 10)));
   };
 
-  private getNeighbours(input: number[][], point: [number, number]) {
+  private getNeighbours(input: number[][], point: Coords) {
     return getNeighboursCoords(input, point).map(([i, j]) => input[i][j]);
   }
 
   private getLowPoints(input: number[][]) {
-    const lowPoints: [number, number][] = [];
+    const lowPoints: Coords[] = [];
     for (let i = 0; i < input.length; i++) {
       for (let j = 0; j < input[0].length; j++) {
         const neighbours = this.getNeighbours(input, [i, j]);
@@ -45,7 +28,7 @@ class DaySolver extends Solver<number[][], number> {
     return lowPoints;
   }
 
-  private getBasin(input: number[][], lowPoint: [number, number]) {
+  private getBasin(input: number[][], lowPoint: Coords) {
     const basinPoints = new Map();
     basinPoints.set(`${lowPoint[0]},${lowPoint[1]}`, true);
     let pointsQueue = [lowPoint];

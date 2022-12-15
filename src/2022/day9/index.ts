@@ -1,4 +1,5 @@
 import { Solver } from 'src/shared/Solver';
+import { Coords } from 'src/shared/types';
 
 enum Direction {
   LEFT = 'L',
@@ -7,7 +8,7 @@ enum Direction {
   DOWN = 'D',
 }
 
-const directionsOffsets: Record<Direction, [number, number]> = {
+const directionsOffsets: Record<Direction, Coords> = {
   [Direction.LEFT]: [-1, 0],
   [Direction.RIGHT]: [1, 0],
   [Direction.UP]: [0, 1],
@@ -37,7 +38,7 @@ class DaySolver extends Solver<Move[], number> {
     const rope = [
       [0, 0],
       [0, 0],
-    ] as [number, number][];
+    ] as Coords[];
     input.forEach(move => {
       this.moveRope(rope, move, visitedCells);
     });
@@ -57,14 +58,14 @@ class DaySolver extends Solver<Move[], number> {
       [0, 0],
       [0, 0],
       [0, 0],
-    ] as [number, number][];
+    ] as Coords[];
     input.forEach(move => {
       this.moveRope(rope, move, visitedCells);
     });
     return visitedCells.size;
   };
 
-  private moveRope = (rope: [number, number][], move: Move, visitedCells: Set<string>) => {
+  private moveRope = (rope: Coords[], move: Move, visitedCells: Set<string>) => {
     new Array(move.steps).fill(undefined).forEach(_ => {
       let newHead = this.moveHead(rope[0], move.direction);
       rope[0] = newHead;
@@ -78,12 +79,12 @@ class DaySolver extends Solver<Move[], number> {
     return rope;
   };
 
-  private moveHead = (head: [number, number], direction: Direction) => {
+  private moveHead = (head: Coords, direction: Direction) => {
     const directionOffset = directionsOffsets[direction];
-    return [head[0] + directionOffset[0], head[1] + directionOffset[1]] as [number, number];
+    return [head[0] + directionOffset[0], head[1] + directionOffset[1]] as Coords;
   };
 
-  private moveNextNode = (currentNode: [number, number], nextNode: [number, number]) => {
+  private moveNextNode = (currentNode: Coords, nextNode: Coords) => {
     let newNode = nextNode;
     const xDiff = currentNode[0] - nextNode[0];
     const yDiff = currentNode[1] - nextNode[1];

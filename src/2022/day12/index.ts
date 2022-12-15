@@ -1,10 +1,11 @@
 import { getNeighboursCoords } from 'src/shared/matrix';
 import { Solver } from 'src/shared/Solver';
+import { Coords } from 'src/shared/types';
 
 interface Input {
   grid: number[][];
-  start: [number, number];
-  end: [number, number];
+  start: Coords;
+  end: Coords;
 }
 
 class DaySolver extends Solver<Input, number> {
@@ -13,8 +14,8 @@ class DaySolver extends Solver<Input, number> {
   }
 
   protected parseInput = (input: string) => {
-    let start: [number, number] = [0, 0];
-    let end: [number, number] = [0, 0];
+    let start: Coords = [0, 0];
+    let end: Coords = [0, 0];
     const grid = input.split('\n').map((line, lineIdx) =>
       line.split('').map((cell, cellIdx) => {
         let char = cell;
@@ -37,7 +38,7 @@ class DaySolver extends Solver<Input, number> {
   };
 
   protected _solveSecondPart = ({ grid, start, end }: Input) => {
-    const starts: [number, number][] = [];
+    const starts: Coords[] = [];
     grid.forEach((line, lineIdx) =>
       line.forEach((cell, cellIdx) => {
         if (cell === 0) {
@@ -65,11 +66,7 @@ class DaySolver extends Solver<Input, number> {
     return scores[end[0]][end[1]];
   };
 
-  private computeNeighborsScore = (
-    grid: number[][],
-    cell: [number, number],
-    scores: number[][]
-  ) => {
+  private computeNeighborsScore = (grid: number[][], cell: Coords, scores: number[][]) => {
     const neighbourCoords = getNeighboursCoords(grid, cell).filter(
       coords =>
         grid[coords[0]][coords[1]] <= grid[cell[0]][cell[1]] + 1 &&
