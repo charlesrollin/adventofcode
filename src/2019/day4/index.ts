@@ -1,10 +1,5 @@
 import { Solver } from 'src/shared/Solver';
 
-interface Move {
-  direction: string;
-  length: number;
-}
-
 class DaySolver extends Solver<[number, number], number> {
   constructor() {
     super(__dirname);
