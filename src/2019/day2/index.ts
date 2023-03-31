@@ -14,7 +14,7 @@ class DaySolver extends Solver<number[], number> {
     const computer = new IntcodeComputer();
     input[1] = 12;
     input[2] = 2;
-    return computer.run(input);
+    return computer.run({ program: input }).program[0];
   };
 
   protected _solveSecondPart = (input: number[]) => {
@@ -22,7 +22,7 @@ class DaySolver extends Solver<number[], number> {
     for (let noun = 0; noun < 100; noun++) {
       for (let verb = 0; verb < 100; verb++) {
         const inputCopy = [input[0], noun, verb, ...input.slice(3)];
-        const result = computer.run(inputCopy);
+        const result = computer.run({ program: inputCopy }).program[0];
         if (result === 19690720) {
           return 100 * noun + verb;
         }

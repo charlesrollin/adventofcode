@@ -1,27 +1,49 @@
 enum OpCodes {
   ADD = 1,
   MULTIPLY = 2,
+  INPUT = 3,
+  OUTPUT = 4,
   END = 99,
 }
 
+export interface State {
+  program: number[];
+  input?: number;
+  pointer?: number;
+  outputs?: number[];
+}
+
 export class IntcodeComputer {
-  run = (program: number[], idx: number = 0): number => {
-    if (program[idx] === OpCodes.END) {
-      return program[0];
+  run = ({ program, pointer = 0, input, outputs = [] }: State): State => {
+    if (program[pointer] === OpCodes.END) {
+      return { program, pointer, input, outputs };
     }
-    const nextIdx = this.operationsMapping[program[idx]](program, idx + 1);
-    return this.run(program, nextIdx);
+    const nextState = this.operationsMapping[program[pointer]]({
+      program,
+      pointer: pointer + 1,
+      input,
+      outputs,
+    });
+    return this.run(nextState);
   };
 
-  private operationsMapping: Record<OpCodes, (program: number[], idx: number) => number> = {
-    [OpCodes.ADD]: (program, idx) => {
-      program[program[idx + 2]] = program[program[idx]] + program[program[idx + 1]];
-      return idx + 3;
+  private operationsMapping: Record<OpCodes, (state: State) => State> = {
+    [OpCodes.ADD]: ({ program, pointer, ...rest }) => {
+      program[program[pointer + 2]] = program[program[pointer]] + program[program[pointer + 1]];
+      return { program, pointer: pointer + 3, ...rest };
     },
-    [OpCodes.MULTIPLY]: (program, idx) => {
-      program[program[idx + 2]] = program[program[idx]] * program[program[idx + 1]];
-      return idx + 3;
+    [OpCodes.MULTIPLY]: ({ program, pointer, ...rest }) => {
+      program[program[pointer + 2]] = program[program[pointer]] * program[program[pointer + 1]];
+      return { program, pointer: pointer + 3, ...rest };
     },
-    [OpCodes.END]: (_, idx) => idx + 1,
+    [OpCodes.INPUT]: ({ program, pointer, input, ...rest }) => {
+      program[program[pointer]] = input;
+      return { program, pointer: pointer + 1, input, ...rest };
+    },
+    [OpCodes.OUTPUT]: ({ program, pointer, outputs, ...rest }) => {
+      outputs.push(program[program[pointer]]);
+      return { program, pointer: pointer + 1, outputs, ...rest };
+    },
+    [OpCodes.END]: ({ pointer, ...rest }) => ({ pointer: pointer + 1, ...rest }),
   };
 }
